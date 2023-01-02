@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int numberOfSubstrings(string s) {
+        map<char,int>m;
+        int c=0;
+        int t=0;
+        int n=s.size();
+     int i=0;
+     int j=0;
+     while(j<s.size()){
+     m[s[j]]++; 
+         if(m.size()==3){
+
+             while(m.size()==3){
+                 auto it=m.find(s[i]);
+                 if(it->second>0){
+                 t+=n-j;
+                 i++;}
+                 else{
+                     break;
+                 }
+                  it->second--;
+                  if(it->second==0){
+                      m.erase(it);
+                  }
+             }
+         }
+         j++;
+     }
+     return t;
+    }
+};
